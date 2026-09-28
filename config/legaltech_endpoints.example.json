@@ -1,0 +1,40 @@
+{
+  "base_url": "https://annonces.legaltech.tn",
+  "allowed_download_hosts": ["annonces.legaltech.tn"],
+  "timeout_seconds": 45,
+  "min_delay_seconds": 1.5,
+  "max_download_mb": 150,
+  "requests": {
+    "session_check": {
+      "method": "GET",
+      "url": "REMPLACER_PAR_URL_AUTHENTIFIEE",
+      "body_mode": "none",
+      "expected_statuses": [200],
+      "authenticated_markers": [
+        "REMPLACER_PAR_TEXTE_VISIBLE_UNIQUEMENT_APRES_CONNEXION"
+      ]
+    },
+    "search": {
+      "method": "POST",
+      "url": "REMPLACER_PAR_URL_RECHERCHE",
+      "body_mode": "json",
+      "default_body": {},
+      "expected_statuses": [200]
+    },
+    "download": {
+      "method": "GET",
+      "url": "REMPLACER_PAR_URL_TELECHARGEMENT/{id}",
+      "body_mode": "none",
+      "expected_statuses": [200]
+    }
+  },
+  "response_mapping": {
+    "items_path": "REMPLACER.items",
+    "fields": {
+      "source_id": "id",
+      "reference": "reference",
+      "published_at": "published_at",
+      "download_url": "download_url"
+    }
+  }
+}

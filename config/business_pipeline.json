@@ -1,0 +1,357 @@
+{
+  "version": 1,
+  "sources": {
+    "legaltech": {
+      "label": "LegalTech",
+      "triage_service": "compliance",
+      "type": "Veille juridique et financière",
+      "implemented": true,
+      "active": true,
+      "eligible_services": [
+        "investment",
+        "compliance",
+        "portfolio",
+        "commercial"
+      ]
+    },
+    "cmf": {
+      "label": "CMF",
+      "type": "Source réglementaire officielle",
+      "implemented": true,
+      "active": true,
+      "eligible_services": [
+        "compliance"
+      ]
+    },
+    "social": {
+      "label": "Réseaux sociaux",
+      "type": "Source externe à connecter",
+      "implemented": false,
+      "active": false,
+      "eligible_services": []
+    },
+    "finance_ministry": {
+      "label": "Ministère des Finances",
+      "type": "Source officielle à connecter",
+      "implemented": false,
+      "active": false,
+      "eligible_services": []
+    }
+  },
+  "services": {
+    "investment": {
+      "prompt_version": 2,
+      "prompt": "Sélectionne les preuves déterminantes pour une revue d’investissement : structure financière, capital, propriété, financement, transaction, gouvernance. Ne transforme pas une annonce juridique en opportunité sans preuve. Réponds uniquement par les identifiants des preuves et actions fournis. N’invente aucun texte, effet financier, relation, échéance ou information absente. Les effets économiques non démontrés sont Non déterminé. Les interprétations et recommandations sont distinctes des faits. /no_think",
+      "output_fields": [
+        "summary",
+        "event_type",
+        "entities",
+        "sector",
+        "investment_relevance",
+        "investment_impact",
+        "financial_signals",
+        "strategic_signals",
+        "investment_signal",
+        "materiality",
+        "recommended_actions",
+        "confidence",
+        "evidence",
+        "uncertainties",
+        "validation_status"
+      ],
+      "grounded": true,
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "summary_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "maxItems": 3,
+            "uniqueItems": true
+          },
+          "focus_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 8,
+            "uniqueItems": true
+          },
+          "action_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 3,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "summary_evidence",
+          "focus_evidence",
+          "action_ids"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "compliance": {
+      "prompt_version": 1,
+      "prompt": "Évalue cet événement pour la Conformité UGFS : obligations explicites, impact réglementaire/juridique/gouvernance, personnes ou entités concernées, échéances explicites et action de conformité recommandée. Une date de publication n’est pas une échéance. Signale les informations absentes et distingue une obligation établie d’une vérification recommandée.",
+      "output_fields": [
+        "obligations",
+        "impact_reglementaire",
+        "echeances",
+        "action_conformite"
+      ]
+    },
+    "portfolio": {
+      "prompt_version": 2,
+      "prompt": "Sélectionne les preuves utiles au suivi d’une exposition UGFS confirmée par le référentiel : société liée, gouvernance, finance, exploitation et aspects juridiques. Une société simplement mentionnée ne prouve aucune participation. Réponds uniquement par les identifiants des preuves et actions fournis. N’invente aucun texte, effet financier, relation, échéance ou information absente. Les effets économiques non démontrés sont Non déterminé. Les interprétations et recommandations sont distinctes des faits. /no_think",
+      "output_fields": [
+        "summary",
+        "event_type",
+        "matched_portfolio_entity",
+        "referential_match_reason",
+        "portfolio_relevance",
+        "financial_impact",
+        "operational_impact",
+        "governance_impact",
+        "legal_regulatory_impact",
+        "monitoring_severity",
+        "recommended_actions",
+        "confidence",
+        "evidence",
+        "uncertainties",
+        "validation_status"
+      ],
+      "grounded": true,
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "summary_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "maxItems": 3,
+            "uniqueItems": true
+          },
+          "focus_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 8,
+            "uniqueItems": true
+          },
+          "action_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 3,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "summary_evidence",
+          "focus_evidence",
+          "action_ids"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "commercial": {
+      "prompt_version": 1,
+      "prompt": "Évalue cet événement pour le Commerce UGFS : signal commercial réel, opportunité pertinente, entités concernées et action commerciale recommandée. Les informations juridiques générales ne constituent pas automatiquement une opportunité commerciale.",
+      "output_fields": [
+        "signal_commercial",
+        "opportunite",
+        "entites_concernees",
+        "action_commerciale"
+      ]
+    }
+  },
+  "routing_rules": [
+    {
+      "id": "cmf_compliance",
+      "name": "Publications CMF → Conformité",
+      "active": true,
+      "source": "cmf",
+      "services": [
+        "compliance"
+      ]
+    },
+    {
+      "id": "referential_portfolio",
+      "name": "Entité du portefeuille UGFS",
+      "active": true,
+      "referential_type": "portfolio",
+      "services": [
+        "portfolio"
+      ]
+    },
+    {
+      "id": "investment_corporate_events",
+      "name": "LegalTech — événement financier, capital, transaction ou gouvernance",
+      "active": true,
+      "source": "legaltech",
+      "event_types": [
+        "capital_reduction",
+        "capital_increase",
+        "transaction",
+        "governance",
+        "liquidation",
+        "financing",
+        "FINANCIAL_RESULTS",
+        "SHARE_CANCELLATION",
+        "INSOLVENCY",
+        "FINANCIAL_STATEMENTS_FILING",
+        "FINANCIAL_REPORTING_PUBLICATION",
+        "FINANCIAL_STATEMENTS_APPROVAL"
+      ],
+      "services": [
+        "investment"
+      ]
+    }
+  ],
+  "referential_files": [],
+  "event_types": {
+    "capital_reduction": {
+      "label": "Réduction de capital",
+      "keywords": [
+        "réduction de capital",
+        "réduction du capital",
+        "تخفيض رأس المال"
+      ],
+      "topics": [
+        "financial",
+        "ownership"
+      ],
+      "investment_signal": "Mixte",
+      "materiality": "Moyenne",
+      "monitoring_severity": "Moyenne",
+      "interpretation": "Interprétation prudente : une modification du capital justifie l’examen de la structure financière ; elle ne prouve ni perte économique, ni croissance, ni création de valeur.",
+      "actions": [
+        "review_capital",
+        "review_exposure"
+      ]
+    },
+    "capital_increase": {
+      "label": "Augmentation de capital",
+      "keywords": [
+        "augmentation de capital",
+        "augmentation du capital",
+        "الترفيع في رأس المال"
+      ],
+      "topics": [
+        "financial",
+        "ownership"
+      ],
+      "investment_signal": "Informationnel",
+      "materiality": "Moyenne",
+      "monitoring_severity": "Moyenne",
+      "interpretation": "Interprétation prudente : la modification du capital peut nécessiter une revue du financement et de la dilution ; ses effets réels restent à établir.",
+      "actions": [
+        "review_capital",
+        "review_exposure"
+      ]
+    },
+    "transaction": {
+      "label": "Opération de propriété / transaction",
+      "keywords": [
+        "cession de parts",
+        "cession d actions",
+        "fusion absorption",
+        "acquisition de",
+        "نقل ملكية"
+      ],
+      "topics": [
+        "ownership",
+        "strategic"
+      ],
+      "investment_signal": "Informationnel",
+      "materiality": "Moyenne",
+      "monitoring_severity": "Moyenne",
+      "interpretation": "Interprétation prudente : une opération de propriété justifie l’examen du périmètre et des parties ; la valeur et les synergies ne sont pas établies par ce seul signal.",
+      "actions": [
+        "review_transaction",
+        "review_exposure"
+      ]
+    },
+    "governance": {
+      "label": "Gouvernance / dirigeants",
+      "keywords": [
+        "nomination",
+        "changement de gérant",
+        "administrateur",
+        "مجلس الإدارة"
+      ],
+      "topics": [
+        "governance"
+      ],
+      "investment_signal": "Informationnel",
+      "materiality": "Basse",
+      "monitoring_severity": "Moyenne",
+      "interpretation": "Interprétation prudente : l’événement appelle une mise à jour de la gouvernance ; aucun effet sur la performance n’est démontré.",
+      "actions": [
+        "update_governance",
+        "request_information"
+      ]
+    },
+    "liquidation": {
+      "label": "Dissolution / liquidation",
+      "keywords": [
+        "mise en liquidation",
+        "dissolution anticipée",
+        "تصفية الشركة"
+      ],
+      "topics": [
+        "legal",
+        "financial",
+        "operational"
+      ],
+      "investment_signal": "Défavorable",
+      "materiality": "Haute",
+      "monitoring_severity": "Haute",
+      "interpretation": "Interprétation prudente : une dissolution ou liquidation est un signal défavorable de continuité à examiner ; les pertes et l’exposition UGFS ne sont pas quantifiées.",
+      "actions": [
+        "review_continuity",
+        "review_exposure"
+      ]
+    },
+    "financing": {
+      "label": "Financement",
+      "keywords": [
+        "emprunt obligataire",
+        "émission obligataire",
+        "contrat de financement"
+      ],
+      "topics": [
+        "financial"
+      ],
+      "investment_signal": "Informationnel",
+      "materiality": "Moyenne",
+      "monitoring_severity": "Moyenne",
+      "interpretation": "Interprétation prudente : le financement appelle une revue des conditions et de l’endettement ; la solvabilité et la rentabilité restent à déterminer.",
+      "actions": [
+        "review_financing",
+        "review_exposure"
+      ]
+    }
+  },
+  "business_actions": {
+    "review_capital": "Examiner les modalités et motifs de l’opération sur capital avant de réviser la thèse d’investissement.",
+    "review_exposure": "Vérifier l’exposition financière documentée et mettre à jour le dossier de suivi ; ne pas supposer un montant de participation.",
+    "review_transaction": "Examiner les parties, le prix et le périmètre de la transaction avant toute conclusion stratégique.",
+    "update_governance": "Mettre à jour les dirigeants/mandats du dossier de suivi à partir des actes officiels.",
+    "request_information": "Demander les informations manquantes au responsable du suivi avant de conclure.",
+    "review_continuity": "Signaler l’événement au responsable du suivi et examiner les conséquences sur la continuité et les engagements.",
+    "review_financing": "Examiner les conditions, échéances contractuelles et garanties du financement dans la source complète.",
+    "monitor": "Surveiller l’événement ; aucune décision d’investissement ne découle automatiquement de l’annonce."
+  }
+}

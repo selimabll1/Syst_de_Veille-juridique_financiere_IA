@@ -1,57 +1,59 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Virtual environment
+# Python / virtual environments
 .venv/
 venv/
 env/
-
-# Secrets
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+# Secrets and browser state (preserve locally)
 .env
-
-# Streamlit
+.env.*
+!.env.example
+secrets/
 .streamlit/secrets.toml
-
-# Local data / confidential PDFs
-data/pdf_raw/
-data/ocr_text/
-data/output_excel/
-data/feedback/
-data/processed_emails/
-
-# Screenshots / temporary files
+*storage_state*.json
+*session_storage*.json
+*cookies*.json
+cookies.txt
+*.har
+*.har.json
+legaltech_*.local.json
+# Production data: only reviewed schemas/templates are deliverable
+/data/*
+!/data/reference/
+/data/reference/*
+!/data/reference/.gitkeep
+!/data/reference/event_taxonomy.json
+!/data/reference/portfolio_companies_template.csv
+!/data/reference/import_templates/
+*.sqlite*
+*.db
+*.db-*
+# Local generated files and rollback material
+backups/
+backup_before_*/
+diagnostic_v29/
+.rehearsal/
+.cleanroom/
+cache/
+.cache/
+logs/
 screenshots/
+tmp/
+temp/
 *.log
-
-# OS / IDE
+*.part
+*.zip
+*.7z
+*.rar
+*.bak*
+# Archive is retained locally for recovery, not part of the supported runtime
+/archive/
+/models/*
+!/models/.gitkeep
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
-
-# Large local files
-*.zip
-*.7z
-*.rar
-# LegalTech collector
-secrets/
-*.har
-*.har.json
-cookies.txt
-legaltech_session*.json
-legaltech_endpoints.local.json
-legaltech_query.local.json
-*.part
-data/legaltech_registry.sqlite3*
-
-# LegalTech collector local data
-secrets/
-*.har
-*.har.json
-legaltech_collection.local.json
-legaltech_session.local.json
-data/legaltech_registry.sqlite3*
-*.part

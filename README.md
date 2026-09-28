@@ -1,123 +1,71 @@
-# UGFS-NA LegalTech AI Assistant — Project Starter
+# UGFS North Africa — veille juridique et financière
 
-This folder is a ready-to-run baseline for the internship project.
+Application interne Streamlit : collecte LegalTech/CMF, routage métier, analyse locale sourcée, correction et validation humaines. Les résultats sont des brouillons d'aide à la décision, jamais une décision automatique.
 
-## Project objective
+## Installation Windows (PowerShell)
 
-Build an internal Streamlit application that transforms LegalTech legal announcements into structured business, legal and risk intelligence:
-
-`PDF / LegalTech Email → OCR → Local LLM via Ollama → Risk/Opportunity Scoring → Excel Review → Feedback Memory`
-
-The MVP starts with manual PDF upload. Email automation is intentionally Phase 2 because mailbox authentication may require IT validation.
-
-## Main technologies
-
-- Frontend / app runner: Streamlit
-- Backend logic: Python modules
-- OCR: Tesseract + PyMuPDF direct text extraction
-- Local LLM: Ollama + local model such as `qwen3:8b`
-- Review loop: Excel export/import
-- Feedback memory: JSON
-- Future ML scoring: optional regressors trained from corrected Excel rows
-
-## Folder structure
-
-```text
-legaltech_ai_assistant_project/
-├── app.py
-├── config.py
-├── requirements.txt
-├── .env.example
-├── assets/
-│   └── ugfs_logo.jfif
-├── data/
-│   ├── pdf_raw/
-│   ├── ocr_text/
-│   ├── output_excel/
-│   ├── feedback/
-│   ├── processed_emails/
-│   └── reference/
-├── modules/
-│   ├── email_reader.py
-│   ├── pdf_extractor.py
-│   ├── ocr_engine.py
-│   ├── llm_analyzer.py
-│   ├── feature_extractor.py
-│   ├── scoring_engine.py
-│   ├── excel_manager.py
-│   ├── feedback_manager.py
-│   └── ml_trainer.py
-├── docs/
-├── scripts/
-└── tests/
-```
-
-## Quick start
-
-### 1. Create virtual environment
-
-```bash
-python -m venv .venv
-```
-
-Windows:
+Utiliser Python **3.13 64 bits** (version de validation), Git, et un terminal ouvert à la racine du clone. Python 3.11–3.13 est la plage recommandée ; les autres versions ne sont pas validées.
 
 ```powershell
-.venv\Scripts\activate
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
+.\.venv\Scripts\python.exe -m playwright install chromium
 ```
 
-macOS / Linux:
+Aucune activation PowerShell n'est nécessaire. Ne jamais remplacer un `.env` existant. L'exemple ne contient aucun secret.
 
-```bash
-source .venv/bin/activate
-```
+### Services externes
 
-### 2. Install dependencies
+- **Ollama** : installer la distribution Windows officielle, démarrer Ollama, puis `ollama pull qwen3:1.7b`. Si le service n'est pas lancé, `ollama serve`. La configuration locale `.env` choisit le modèle et l'URL ; aucune substitution automatique de modèle.
+- **Tesseract OCR** : installer Tesseract 5 pour Windows et les langues `fra`, `ara`, `eng`. Ajouter le dossier contenant `tesseract.exe` au PATH du compte qui lance Streamlit. Vérifier `tesseract --version` puis `tesseract --list-langs`.
+- **Poppler** : installer une distribution Windows et ajouter son dossier `Library/bin` (ou `bin`, selon la distribution) au PATH. Vérifier `pdftoppm -v`. L'extraction/aperçu courant utilise PyMuPDF ; Poppler est utile pour les chemins conservés utilisant pdf2image.
+- **Playwright Chromium** : installé avec la commande ci-dessus. Nécessaire à la connexion et à la collecte LegalTech, pas à la consultation vide.
 
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Install Ollama and local model
-
-```bash
-ollama pull qwen3:8b
-ollama run qwen3:8b
-```
-
-Keep Ollama running in the background.
-
-### 4. Configure environment
-
-Windows:
+Ces programmes sont des dépendances de la machine, pas des fichiers à copier depuis le PC de Salima. Ouvrir un nouveau terminal après modification du PATH. Sans Ollama/OCR/session LegalTech, la consultation reste possible ; les actions concernées nécessitent leur configuration.
 
 ```powershell
-copy .env.example .env
+.\.venv\Scripts\python.exe scripts/check_environment.py
+.\.venv\Scripts\python.exe -m streamlit run app.py --server.address 127.0.0.1
 ```
 
-macOS / Linux:
+Ouvrir http://127.0.0.1:8501. La page initiale est **Accueil**. Un clone neuf ne contient ni notifications, ni résultat, ni portefeuille réel : les états vides sont normaux. Ne pas importer les modèles CSV comme des participations réelles.
 
-```bash
-cp .env.example .env
+## Connexion et synchronisation LegalTech
+
+Depuis la racine :
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.legaltech_browser_login_v4
 ```
 
-### 5. Run the app
+Se connecter manuellement dans Chromium ; ouvrir la page des notifications puis revenir au terminal et appuyer sur Entrée. Les fichiers de session restent dans `secrets/`, exclus de Git. Ne pas les partager.
 
-```bash
-streamlit run app.py
+```powershell
+.\.venv\Scripts\python.exe -m scripts.check_legaltech_remote_v29 --headless
+.\.venv\Scripts\python.exe -m scripts.sync_legaltech_notifications_v5 --max-notifications 0 --headless
 ```
 
-## MVP workflow
+La commande CLI collecte les sources. Le bouton **Synchroniser** de l'application ajoute l'orchestration du routage des nouveaux éléments et le rafraîchissement. Préférer le bouton pour l'usage analyste. La cloche compare les cartes/résultats distants à la collecte locale, pas les notifications non lues. CMF se configure et se synchronise dans l'application ; sa politique de pertinence doit être renseignée et CMF reste Conformité uniquement.
 
-1. Upload PDF files in the sidebar or copy them into `data/pdf_raw/`.
-2. Click `Analyser les PDFs`.
-3. Review results in Streamlit.
-4. Click `Exporter vers Excel`.
-5. Human reviewer fills `Statut_Revue`, corrected fields and comments.
-6. Import the corrected Excel file.
-7. The app updates `data/feedback/feedback_memory.json`.
-8. Future analyses include these feedback rules in the LLM prompt.
+## Tests maintenus
 
-## Important
+```powershell
+.\.venv\Scripts\python.exe scripts/run_tests.py
+.\.venv\Scripts\python.exe -m compileall -q app.py config.py ui services modules scripts
+```
 
-This assistant does not give final legal advice. It produces preliminary analysis that must be validated by UGFS human experts.
+La suite sélectionne les tests isolés. Ne pas lancer une découverte aveugle de tous les anciens `test_*.py` : plusieurs diagnostics historiques ouvrent des données ou des services réels. Voir `scripts/diagnostics/README.md`.
+
+## Orientation développeur
+
+`app.py → ui/app_ui.py → services/ui_adapter.py → services / modules → SQLite et fichiers locaux`.
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Exploitation et récupération](docs/RUNBOOK.md)
+- [Passation développeur](docs/HANDOFF.md)
+- [Limites connues](docs/KNOWN_LIMITATIONS.md)
+- [Inventaire Python](docs/RUNTIME_INVENTORY.csv), [imports](docs/RUNTIME_IMPORTS.json), [déplacements](docs/CLEANUP_MOVES.json)
+
+Les archives locales ne font pas partie du produit supporté. Les documents de phases antérieures décrivent parfois des interfaces obsolètes ; les documents ci-dessus font autorité pour le lancement actuel. Ne pas exposer Streamlit sur Internet : le nom d'utilisateur affiché n'est pas un système d'authentification.

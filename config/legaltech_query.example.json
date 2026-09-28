@@ -1,0 +1,8 @@
+{
+  "_comment": "Remplacer les champs par ceux observés dans Network. Commencer avec 5 résultats.",
+  "params": {},
+  "body": {
+    "page": 1,
+    "limit": 5
+  }
+}

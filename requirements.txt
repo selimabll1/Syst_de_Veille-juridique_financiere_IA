@@ -1,4 +1,5 @@
-streamlit>=1.36
+# Windows Python 3.13; see README for external OCR/Ollama/browser setup.
+streamlit>=1.58
 pandas>=2.2
 openpyxl>=3.1
 python-dotenv>=1.0
@@ -12,3 +13,5 @@ scikit-learn>=1.5
 joblib>=1.4
 msal
 pypdf==6.14.2
+jsonschema>=4.22
+playwright>=1.50

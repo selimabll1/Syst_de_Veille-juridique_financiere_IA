@@ -1,0 +1,270 @@
+[
+  {
+    "from": "app_backup_before_master.py",
+    "to": "archive/legacy/app_backup_before_master.py"
+  },
+  {
+    "from": "app_backup_before_v24.py",
+    "to": "archive/legacy/app_backup_before_v24.py"
+  },
+  {
+    "from": "app_backup_before_v25.py",
+    "to": "archive/legacy/app_backup_before_v25.py"
+  },
+  {
+    "from": "app_backup_before_v26.py",
+    "to": "archive/legacy/app_backup_before_v26.py"
+  },
+  {
+    "from": "app_backup_before_v27.py",
+    "to": "archive/legacy/app_backup_before_v27.py"
+  },
+  {
+    "from": "app_backup.py",
+    "to": "archive/legacy/app_backup.py"
+  },
+  {
+    "from": "app_complex_pdf_flow.py",
+    "to": "archive/legacy/app_complex_pdf_flow.py"
+  },
+  {
+    "from": "app_desktop_preview_v2.py",
+    "to": "archive/legacy/app_desktop_preview_v2.py"
+  },
+  {
+    "from": "app_desktop_preview_v21.py",
+    "to": "archive/legacy/app_desktop_preview_v21.py"
+  },
+  {
+    "from": "app_desktop_preview.py",
+    "to": "archive/legacy/app_desktop_preview.py"
+  },
+  {
+    "from": "app_legacy_before_approved_ui_v21.py",
+    "to": "archive/legacy/app_legacy_before_approved_ui_v21.py"
+  },
+  {
+    "from": "app_v4.py",
+    "to": "archive/legacy/app_v4.py"
+  },
+  {
+    "from": "app_v5.py",
+    "to": "archive/legacy/app_v5.py"
+  },
+  {
+    "from": "app_v6.py",
+    "to": "archive/legacy/app_v6.py"
+  },
+  {
+    "from": "app.py.bak_before_approved_ui_v21",
+    "to": "archive/legacy/app.py.bak_before_approved_ui_v21"
+  },
+  {
+    "from": "app.py.bak_before_notifications_clean_start",
+    "to": "archive/legacy/app.py.bak_before_notifications_clean_start"
+  },
+  {
+    "from": "app.py.bak_before_notifications_dashboard_step1",
+    "to": "archive/legacy/app.py.bak_before_notifications_dashboard_step1"
+  },
+  {
+    "from": "app.py.bak_before_notifications_ui_v3",
+    "to": "archive/legacy/app.py.bak_before_notifications_ui_v3"
+  },
+  {
+    "from": "app.py.bak_before_ui_v22",
+    "to": "archive/legacy/app.py.bak_before_ui_v22"
+  },
+  {
+    "from": "app.py.bak_before_v23",
+    "to": "archive/legacy/app.py.bak_before_v23"
+  },
+  {
+    "from": "assets.zip",
+    "to": "archive/legacy/assets.zip"
+  },
+  {
+    "from": "install_v33_0_ui_shell.py",
+    "to": "archive/legacy/install_v33_0_ui_shell.py"
+  },
+  {
+    "from": "install_v33_1_notifications_master.py",
+    "to": "archive/legacy/install_v33_1_notifications_master.py"
+  },
+  {
+    "from": "install_v33_2_ui_master_deep_pass.py",
+    "to": "archive/legacy/install_v33_2_ui_master_deep_pass.py"
+  },
+  {
+    "from": "install_v33_3_pixel_pass.py",
+    "to": "archive/legacy/install_v33_3_pixel_pass.py"
+  },
+  {
+    "from": "install_v33_4_exact_match.py",
+    "to": "archive/legacy/install_v33_4_exact_match.py"
+  },
+  {
+    "from": "install_v33_5_final_ui_freeze.py",
+    "to": "archive/legacy/install_v33_5_final_ui_freeze.py"
+  },
+  {
+    "from": "install_v33_6_ui_ux_corrected.py",
+    "to": "archive/legacy/install_v33_6_ui_ux_corrected.py"
+  },
+  {
+    "from": "install_v33_7_lux_filters.py",
+    "to": "archive/legacy/install_v33_7_lux_filters.py"
+  },
+  {
+    "from": "install_v33_8_stable_luxe.py",
+    "to": "archive/legacy/install_v33_8_stable_luxe.py"
+  },
+  {
+    "from": "modules (2).zip",
+    "to": "archive/legacy/modules (2).zip"
+  },
+  {
+    "from": "modules.zip",
+    "to": "archive/legacy/modules.zip"
+  },
+  {
+    "from": "notification_viewer_v4.py",
+    "to": "archive/legacy/notification_viewer_v4.py"
+  },
+  {
+    "from": "notification_viewer_v5.py",
+    "to": "archive/legacy/notification_viewer_v5.py"
+  },
+  {
+    "from": "notification_viewer.py",
+    "to": "archive/legacy/notification_viewer.py"
+  },
+  {
+    "from": "UGFS_LegalTech_V29_CurrentStack.zip",
+    "to": "archive/legacy/UGFS_LegalTech_V29_CurrentStack.zip"
+  },
+  {
+    "from": "scripts/test_alert_cards_v4_5.py",
+    "to": "scripts/diagnostics/test_alert_cards_v4_5.py"
+  },
+  {
+    "from": "scripts/test_cmf_v1.py",
+    "to": "archive/legacy/test_cmf_v1.py"
+  },
+  {
+    "from": "scripts/test_complex_segmentation.py",
+    "to": "scripts/diagnostics/test_complex_segmentation.py"
+  },
+  {
+    "from": "scripts/test_current_fixes_v6.py",
+    "to": "scripts/diagnostics/test_current_fixes_v6.py"
+  },
+  {
+    "from": "scripts/test_detail_enrichment_v14.py",
+    "to": "scripts/diagnostics/test_detail_enrichment_v14.py"
+  },
+  {
+    "from": "scripts/test_financial_validation_v4.py",
+    "to": "scripts/diagnostics/test_financial_validation_v4.py"
+  },
+  {
+    "from": "scripts/test_generic_compatibility_v7.py",
+    "to": "scripts/diagnostics/test_generic_compatibility_v7.py"
+  },
+  {
+    "from": "scripts/test_interface_excel_v8.py",
+    "to": "scripts/diagnostics/test_interface_excel_v8.py"
+  },
+  {
+    "from": "scripts/test_legaltech_api_v2.py",
+    "to": "scripts/diagnostics/test_legaltech_api_v2.py"
+  },
+  {
+    "from": "scripts/test_legaltech_browser_offline.py",
+    "to": "scripts/diagnostics/test_legaltech_browser_offline.py"
+  },
+  {
+    "from": "scripts/test_legaltech_browser.py",
+    "to": "scripts/diagnostics/test_legaltech_browser.py"
+  },
+  {
+    "from": "scripts/test_legaltech_collector_offline.py",
+    "to": "scripts/diagnostics/test_legaltech_collector_offline.py"
+  },
+  {
+    "from": "scripts/test_legaltech_detail_live.py",
+    "to": "scripts/diagnostics/test_legaltech_detail_live.py"
+  },
+  {
+    "from": "scripts/test_legaltech_notifications_offline.py",
+    "to": "scripts/diagnostics/test_legaltech_notifications_offline.py"
+  },
+  {
+    "from": "scripts/test_legaltech_notifications_v4_offline.py",
+    "to": "scripts/diagnostics/test_legaltech_notifications_v4_offline.py"
+  },
+  {
+    "from": "scripts/test_legaltech_notifications.py",
+    "to": "scripts/diagnostics/test_legaltech_notifications.py"
+  },
+  {
+    "from": "scripts/test_legaltech_session.py",
+    "to": "scripts/diagnostics/test_legaltech_session.py"
+  },
+  {
+    "from": "scripts/test_legaltech_sync_service.py",
+    "to": "scripts/diagnostics/test_legaltech_sync_service.py"
+  },
+  {
+    "from": "scripts/test_network_parser_v5_3_offline.py",
+    "to": "scripts/diagnostics/test_network_parser_v5_3_offline.py"
+  },
+  {
+    "from": "scripts/test_notification_click_and_panel_v4_4.py",
+    "to": "scripts/diagnostics/test_notification_click_and_panel_v4_4.py"
+  },
+  {
+    "from": "scripts/test_notifications_dashboard_db.py",
+    "to": "scripts/diagnostics/test_notifications_dashboard_db.py"
+  },
+  {
+    "from": "scripts/test_notifications_v4_6.py",
+    "to": "scripts/diagnostics/test_notifications_v4_6.py"
+  },
+  {
+    "from": "scripts/test_ocr_only.py",
+    "to": "scripts/diagnostics/test_ocr_only.py"
+  },
+  {
+    "from": "scripts/test_one_pdf_pipeline.py",
+    "to": "scripts/diagnostics/test_one_pdf_pipeline.py"
+  },
+  {
+    "from": "scripts/test_pdf_library_service.py",
+    "to": "scripts/diagnostics/test_pdf_library_service.py"
+  },
+  {
+    "from": "scripts/test_pipeline_validation.py",
+    "to": "scripts/diagnostics/test_pipeline_validation.py"
+  },
+  {
+    "from": "scripts/test_risk_opportunity_v5.py",
+    "to": "scripts/diagnostics/test_risk_opportunity_v5.py"
+  },
+  {
+    "from": "scripts/test_rne_parser_samples_v1.py",
+    "to": "scripts/diagnostics/test_rne_parser_samples_v1.py"
+  },
+  {
+    "from": "scripts/test_scoring_v3.py",
+    "to": "scripts/diagnostics/test_scoring_v3.py"
+  },
+  {
+    "from": "scripts/test_sync_v13_fixes.py",
+    "to": "scripts/diagnostics/test_sync_v13_fixes.py"
+  },
+  {
+    "from": "tatus",
+    "to": "archive/legacy/tatus"
+  }
+]

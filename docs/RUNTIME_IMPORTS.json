@@ -1,0 +1,1219 @@
+{
+  "edges": {
+    "app.py": [
+      "ui/app_ui.py"
+    ],
+    "cmf_compliance_prototype.py": [
+      "modules/cmf_collector_v1.py",
+      "modules/cmf_registry_v1.py"
+    ],
+    "config.py": [],
+    "modules/admin_registry.py": [],
+    "modules/alert_identity.py": [],
+    "modules/alert_pdf_linker.py": [
+      "modules/alert_identity.py"
+    ],
+    "modules/alert_workflow.py": [],
+    "modules/analysis_results_registry.py": [
+      "modules/alert_identity.py"
+    ],
+    "modules/business_export.py": [
+      "config.py",
+      "modules/service_model.py",
+      "services/event_taxonomy.py",
+      "services/financial_intelligence.py",
+      "services/result_presentation.py"
+    ],
+    "modules/business_pipeline_registry.py": [],
+    "modules/cmf_collector_v1.py": [],
+    "modules/cmf_compliance_ui_v1.py": [
+      "modules/cmf_collector_v1.py",
+      "modules/cmf_registry_v1.py"
+    ],
+    "modules/cmf_registry_v1.py": [],
+    "modules/document_segmenter.py": [],
+    "modules/email_digest_service.py": [],
+    "modules/email_reader.py": [],
+    "modules/excel_manager.py": [
+      "config.py",
+      "modules/scoring_engine.py"
+    ],
+    "modules/excel_manager_backup.py": [
+      "config.py"
+    ],
+    "modules/excel_manager_complex_flow.py": [
+      "config.py"
+    ],
+    "modules/excel_manager_v4.py": [
+      "config.py"
+    ],
+    "modules/excel_manager_v5.py": [
+      "config.py"
+    ],
+    "modules/excel_manager_v6.py": [
+      "config.py"
+    ],
+    "modules/fact_validator.py": [
+      "modules/tunisian_amount_parser.py"
+    ],
+    "modules/fact_validator_v4.py": [
+      "modules/tunisian_amount_parser.py"
+    ],
+    "modules/fact_validator_v5.py": [
+      "modules/tunisian_amount_parser.py"
+    ],
+    "modules/fact_validator_v6.py": [
+      "modules/tunisian_amount_parser.py"
+    ],
+    "modules/feature_extractor.py": [],
+    "modules/feedback_manager.py": [
+      "config.py"
+    ],
+    "modules/legaltech_api_client_v2.py": [],
+    "modules/legaltech_browser_collector.py": [],
+    "modules/legaltech_detail_parser.py": [],
+    "modules/legaltech_http_client.py": [],
+    "modules/legaltech_notifications_collector.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "modules/legaltech_notifications_network_collector.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_detail_parser.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "modules/legaltech_registry.py": [],
+    "modules/legaltech_registry_backup_v1.py": [],
+    "modules/legaltech_remote_watcher.py": [
+      "modules/alert_identity.py",
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py"
+    ],
+    "modules/legaltech_sync_service.py": [
+      "modules/legaltech_api_client_v2.py",
+      "modules/legaltech_registry.py"
+    ],
+    "modules/llm_analyzer.py": [
+      "config.py"
+    ],
+    "modules/llm_analyzer_backup.py": [
+      "config.py"
+    ],
+    "modules/llm_analyzer_old.py": [
+      "config.py"
+    ],
+    "modules/llm_analyzer_v2.py": [
+      "config.py"
+    ],
+    "modules/llm_analyzer_v4.py": [
+      "config.py"
+    ],
+    "modules/llm_analyzer_v5.py": [
+      "config.py"
+    ],
+    "modules/ml_trainer.py": [
+      "config.py"
+    ],
+    "modules/notifications_dashboard_section.py": [
+      "scripts/sync_legaltech_notifications_v5.py"
+    ],
+    "modules/notifications_dashboard_section_v3.py": [
+      "modules/alert_pdf_linker.py",
+      "scripts/check_legaltech_remote_v29.py",
+      "scripts/download_pdfs_v5_network_capture_v3.py",
+      "scripts/sync_legaltech_notifications_v5.py"
+    ],
+    "modules/ocr_engine.py": [
+      "config.py"
+    ],
+    "modules/pdf_extractor.py": [
+      "config.py"
+    ],
+    "modules/pdf_library_service.py": [],
+    "modules/pdf_preview.py": [],
+    "modules/pipeline_validator.py": [
+      "modules/document_segmenter.py"
+    ],
+    "modules/sample_selector.py": [
+      "modules/fact_validator.py"
+    ],
+    "modules/scoring_engine.py": [
+      "config.py",
+      "modules/fact_validator.py",
+      "modules/feature_extractor.py"
+    ],
+    "modules/scoring_engine_backup.py": [
+      "config.py",
+      "modules/feature_extractor.py"
+    ],
+    "modules/scoring_engine_old.py": [
+      "config.py",
+      "modules/feature_extractor.py"
+    ],
+    "modules/scoring_engine_v2.py": [
+      "config.py",
+      "modules/feature_extractor.py"
+    ],
+    "modules/scoring_engine_v4.py": [
+      "config.py",
+      "modules/fact_validator.py",
+      "modules/feature_extractor.py"
+    ],
+    "modules/scoring_engine_v5.py": [
+      "config.py",
+      "modules/fact_validator.py",
+      "modules/feature_extractor.py"
+    ],
+    "modules/scoring_engine_v6.py": [
+      "config.py",
+      "modules/fact_validator.py",
+      "modules/feature_extractor.py"
+    ],
+    "modules/service_model.py": [],
+    "modules/service_registry.py": [
+      "modules/alert_identity.py",
+      "modules/service_model.py"
+    ],
+    "modules/test_complex_segmentation.py": [
+      "modules/document_segmenter.py",
+      "modules/ocr_engine.py"
+    ],
+    "modules/tunisian_amount_parser.py": [],
+    "modules/tunisian_amount_parser_v2.py": [],
+    "modules/ugfs_desktop_ui_v1.py": [
+      "config.py",
+      "modules/excel_manager.py",
+      "modules/llm_analyzer.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/scoring_engine.py"
+    ],
+    "modules/ugfs_desktop_ui_v2.py": [
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v21.py": [
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v22.py": [
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v22_backup.py": [
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v23.py": [
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v24_goal.py": [
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v24_goal_backup.py": [
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v25_goal_fixed.py": [
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v26_html_hotfix.py": [
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v27_workflow.py": [
+      "modules/alert_identity.py",
+      "modules/alert_pdf_linker.py",
+      "modules/alert_workflow.py",
+      "modules/analysis_results_registry.py",
+      "modules/cmf_compliance_ui_v1.py",
+      "modules/email_digest_service.py",
+      "modules/legaltech_detail_parser.py",
+      "modules/legaltech_remote_watcher.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/service_registry.py",
+      "modules/ugfs_desktop_ui_v1.py",
+      "modules/watch_rules.py"
+    ],
+    "modules/ugfs_desktop_ui_v27_workflow_before_key_fix.py": [
+      "modules/alert_workflow.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "modules/ugfs_desktop_ui_v27_workflow_before_MASTER_STEP2.py": [
+      "modules/alert_identity.py",
+      "modules/alert_pdf_linker.py",
+      "modules/alert_workflow.py",
+      "modules/analysis_results_registry.py",
+      "modules/cmf_compliance_ui_v1.py",
+      "modules/email_digest_service.py",
+      "modules/legaltech_detail_parser.py",
+      "modules/legaltech_remote_watcher.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/service_registry.py",
+      "modules/ugfs_desktop_ui_v1.py",
+      "modules/watch_rules.py"
+    ],
+    "modules/ugfs_ui_master_v33_2.py": [
+      "modules/cmf_registry_v1.py",
+      "modules/ugfs_desktop_ui_v27_workflow.py"
+    ],
+    "modules/ugfs_ui_master_v33_3.py": [
+      "modules/ugfs_desktop_ui_v27_workflow.py",
+      "modules/ugfs_ui_master_v33_2.py"
+    ],
+    "modules/ugfs_ui_master_v33_4.py": [
+      "modules/ugfs_desktop_ui_v27_workflow.py",
+      "modules/ugfs_ui_master_v33_2.py"
+    ],
+    "modules/ugfs_ui_master_v33_5.py": [
+      "modules/ugfs_desktop_ui_v27_workflow.py",
+      "modules/ugfs_ui_master_v33_2.py"
+    ],
+    "modules/ugfs_ui_master_v33_6.py": [
+      "modules/ugfs_desktop_ui_v27_workflow.py",
+      "modules/ugfs_ui_master_v33_2.py"
+    ],
+    "modules/ugfs_ui_master_v33_7.py": [
+      "modules/ugfs_desktop_ui_v27_workflow.py",
+      "modules/ugfs_ui_master_v33_2.py"
+    ],
+    "modules/ugfs_ui_master_v33_8.py": [
+      "modules/ugfs_desktop_ui_v27_workflow.py",
+      "modules/ugfs_ui_master_v33_2.py"
+    ],
+    "modules/watch_rules.py": [
+      "modules/alert_identity.py"
+    ],
+    "modules/__init__.py": [],
+    "scripts/audit_product_freeze.py": [
+      "services/ui_adapter.py"
+    ],
+    "scripts/check_environment.py": [
+      "config.py"
+    ],
+    "scripts/check_legaltech_browser_version.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "scripts/check_legaltech_remote_v29.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_remote_watcher.py"
+    ],
+    "scripts/check_legaltech_v4_1.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "scripts/diagnose_all_notifications_v28.py": [],
+    "scripts/diagnose_legaltech_notification_network_v5.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py"
+    ],
+    "scripts/diagnose_legaltech_notification_network_v5_1.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py"
+    ],
+    "scripts/diagnose_legaltech_notification_network_v5_2.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py"
+    ],
+    "scripts/download_pdfs_v5.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/download_pdfs_v5_network_capture.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/download_pdfs_v5_network_capture_v2.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py"
+    ],
+    "scripts/download_pdfs_v5_network_capture_v3.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py"
+    ],
+    "scripts/evaluate_financial_golden.py": [
+      "services/financial_intelligence.py",
+      "tests/test_financial_intelligence.py"
+    ],
+    "scripts/evaluate_phase6.py": [
+      "services/canonical_facts.py",
+      "services/intelligence.py",
+      "services/pipeline_config.py",
+      "services/routing.py"
+    ],
+    "scripts/extract_legaltech_config_from_har.py": [],
+    "scripts/inspect_legaltech_har.py": [],
+    "scripts/inspect_legaltech_har_v3.py": [],
+    "scripts/inspect_notification_cards_v4_2.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/inspect_notification_cards_v4_3.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/legaltech_browser_login.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "scripts/legaltech_browser_login_v4.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "scripts/list_legaltech_notifications_safe.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/measure_freeze_navigation.py": [
+      "app.py"
+    ],
+    "scripts/migrate_v29_data.py": [
+      "modules/alert_identity.py",
+      "modules/alert_pdf_linker.py",
+      "modules/alert_workflow.py",
+      "modules/legaltech_detail_parser.py",
+      "modules/watch_rules.py"
+    ],
+    "scripts/reparse_rne_fields_v5.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "scripts/run_tests.py": [],
+    "scripts/show_legaltech_notifications.py": [
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/sync_legaltech.py": [
+      "modules/legaltech_http_client.py",
+      "modules/legaltech_registry.py"
+    ],
+    "scripts/sync_legaltech_browser.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "scripts/sync_legaltech_notifications.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/sync_legaltech_notifications_full.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/sync_legaltech_notifications_v4.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/sync_legaltech_notifications_v5.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_detail_parser.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py",
+      "modules/legaltech_remote_watcher.py"
+    ],
+    "scripts/sync_legaltech_v2.py": [
+      "modules/legaltech_api_client_v2.py",
+      "modules/legaltech_registry.py"
+    ],
+    "scripts/verify_cmf_integration_v1.py": [
+      "modules/cmf_collector_v1.py",
+      "modules/cmf_registry_v1.py"
+    ],
+    "scripts/verify_composite_7686.py": [
+      "modules/business_pipeline_registry.py",
+      "services/business_analysis.py",
+      "services/composite_documents.py",
+      "services/ui_adapter.py"
+    ],
+    "scripts/verify_financial_freeze.py": [
+      "modules/business_pipeline_registry.py",
+      "modules/llm_analyzer.py",
+      "services/business_analysis.py",
+      "services/intelligence.py"
+    ],
+    "scripts/verify_freeze_copy.py": [
+      "modules/business_export.py",
+      "modules/business_pipeline_registry.py",
+      "services/operations.py",
+      "services/ui_adapter.py"
+    ],
+    "scripts/verify_v29_install.py": [
+      "modules/alert_identity.py",
+      "modules/alert_pdf_linker.py",
+      "modules/alert_workflow.py",
+      "modules/legaltech_detail_parser.py",
+      "modules/legaltech_notifications_network_collector.py",
+      "modules/legaltech_remote_watcher.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/ugfs_desktop_ui_v27_workflow.py",
+      "modules/watch_rules.py"
+    ],
+    "scripts/verify_v30_workflow.py": [
+      "modules/alert_pdf_linker.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/ugfs_desktop_ui_v27_workflow.py",
+      "modules/watch_rules.py"
+    ],
+    "scripts/verify_v31_performance.py": [
+      "modules/alert_pdf_linker.py",
+      "modules/alert_workflow.py",
+      "modules/analysis_results_registry.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/ugfs_desktop_ui_v27_workflow.py"
+    ],
+    "scripts/verify_v32_phase1_2.py": [
+      "modules/email_digest_service.py",
+      "modules/service_registry.py"
+    ],
+    "services/administration.py": [
+      "config.py",
+      "modules/admin_registry.py",
+      "modules/email_digest_service.py",
+      "modules/llm_analyzer.py",
+      "services/lifecycle.py",
+      "services/pipeline_config.py",
+      "services/reference_import.py",
+      "services/routing.py"
+    ],
+    "services/business_analysis.py": [
+      "modules/business_pipeline_registry.py",
+      "modules/cmf_collector_v1.py",
+      "modules/llm_analyzer.py",
+      "modules/ocr_engine.py",
+      "services/composite_documents.py",
+      "services/correctness_gates.py",
+      "services/intelligence.py",
+      "services/jobs.py",
+      "services/normalization.py",
+      "services/pipeline_config.py"
+    ],
+    "services/canonical_facts.py": [
+      "modules/legaltech_detail_parser.py",
+      "services/event_taxonomy.py"
+    ],
+    "services/cmf_relevance.py": [
+      "modules/admin_registry.py",
+      "modules/cmf_collector_v1.py",
+      "modules/ocr_engine.py",
+      "services/routing.py"
+    ],
+    "services/composite_documents.py": [
+      "modules/business_pipeline_registry.py",
+      "modules/cmf_collector_v1.py",
+      "modules/ocr_engine.py",
+      "services/event_taxonomy.py",
+      "services/jobs.py"
+    ],
+    "services/correctness_gates.py": [
+      "services/event_profiles.py",
+      "services/routing.py"
+    ],
+    "services/document_scope.py": [
+      "modules/document_segmenter.py"
+    ],
+    "services/event_profiles.py": [
+      "services/event_taxonomy.py",
+      "services/financial_vocabulary.py"
+    ],
+    "services/event_taxonomy.py": [
+      "services/financial_vocabulary.py"
+    ],
+    "services/financial_intelligence.py": [
+      "services/canonical_facts.py",
+      "services/event_taxonomy.py",
+      "services/intelligence.py"
+    ],
+    "services/financial_vocabulary.py": [],
+    "services/grounded_analysis.py": [
+      "modules/llm_analyzer.py",
+      "services/routing.py"
+    ],
+    "services/intelligence.py": [
+      "modules/llm_analyzer.py",
+      "services/canonical_facts.py",
+      "services/event_profiles.py",
+      "services/event_taxonomy.py",
+      "services/financial_intelligence.py",
+      "services/financial_vocabulary.py",
+      "services/jobs.py",
+      "services/result_presentation.py",
+      "services/routing.py"
+    ],
+    "services/jobs.py": [],
+    "services/lifecycle.py": [],
+    "services/normalization.py": [],
+    "services/operations.py": [
+      "modules/alert_identity.py",
+      "modules/alert_workflow.py",
+      "modules/analysis_results_registry.py",
+      "modules/business_export.py",
+      "modules/business_pipeline_registry.py",
+      "modules/cmf_collector_v1.py",
+      "modules/cmf_registry_v1.py",
+      "modules/email_digest_service.py",
+      "modules/excel_manager.py",
+      "modules/legaltech_remote_watcher.py",
+      "modules/llm_analyzer.py",
+      "modules/service_model.py",
+      "modules/service_registry.py",
+      "modules/watch_rules.py",
+      "scripts/check_legaltech_remote_v29.py",
+      "scripts/download_pdfs_v5_network_capture_v3.py",
+      "scripts/sync_legaltech_notifications_v5.py",
+      "services/administration.py",
+      "services/business_analysis.py",
+      "services/cmf_relevance.py",
+      "services/composite_documents.py",
+      "services/jobs.py",
+      "services/lifecycle.py",
+      "services/normalization.py",
+      "services/pipeline_config.py",
+      "services/reference_import.py",
+      "services/result_presentation.py",
+      "services/routing.py",
+      "services/ui_adapter.py"
+    ],
+    "services/pipeline_config.py": [
+      "config.py",
+      "modules/admin_registry.py",
+      "modules/service_model.py",
+      "services/administration.py",
+      "services/event_taxonomy.py"
+    ],
+    "services/priority.py": [
+      "services/lifecycle.py"
+    ],
+    "services/reference_import.py": [
+      "modules/admin_registry.py",
+      "services/pipeline_config.py",
+      "services/routing.py"
+    ],
+    "services/result_presentation.py": [
+      "services/event_taxonomy.py"
+    ],
+    "services/routing.py": [
+      "services/event_taxonomy.py",
+      "services/pipeline_config.py"
+    ],
+    "services/ui_adapter.py": [
+      "config.py",
+      "modules/admin_registry.py",
+      "modules/alert_identity.py",
+      "modules/alert_pdf_linker.py",
+      "modules/email_digest_service.py",
+      "modules/legaltech_detail_parser.py",
+      "modules/legaltech_remote_watcher.py",
+      "modules/pdf_preview.py",
+      "modules/service_model.py",
+      "modules/watch_rules.py",
+      "services/administration.py",
+      "services/composite_documents.py",
+      "services/intelligence.py",
+      "services/jobs.py",
+      "services/lifecycle.py",
+      "services/normalization.py",
+      "services/operations.py",
+      "services/pipeline_config.py",
+      "services/priority.py",
+      "services/reference_import.py",
+      "services/result_presentation.py",
+      "services/routing.py"
+    ],
+    "services/__init__.py": [],
+    "tests/golden_events.py": [],
+    "tests/test_composite_workflow.py": [
+      "modules/business_pipeline_registry.py",
+      "modules/llm_analyzer.py",
+      "services/business_analysis.py",
+      "services/composite_documents.py",
+      "services/correctness_gates.py",
+      "services/intelligence.py",
+      "services/lifecycle.py",
+      "services/pipeline_config.py"
+    ],
+    "tests/test_correctness_gates.py": [
+      "modules/business_pipeline_registry.py",
+      "modules/llm_analyzer.py",
+      "services/business_analysis.py",
+      "services/canonical_facts.py",
+      "services/correctness_gates.py",
+      "services/document_scope.py",
+      "services/event_profiles.py",
+      "services/intelligence.py"
+    ],
+    "tests/test_final_adapter.py": [
+      "modules/alert_identity.py",
+      "modules/legaltech_remote_watcher.py",
+      "modules/service_model.py",
+      "modules/service_registry.py",
+      "services/ui_adapter.py"
+    ],
+    "tests/test_final_operations.py": [
+      "modules/admin_registry.py",
+      "modules/analysis_results_registry.py",
+      "modules/business_pipeline_registry.py",
+      "modules/cmf_collector_v1.py",
+      "modules/cmf_registry_v1.py",
+      "modules/excel_manager.py",
+      "modules/service_registry.py",
+      "scripts/check_legaltech_remote_v29.py",
+      "scripts/download_pdfs_v5_network_capture_v3.py",
+      "scripts/sync_legaltech_notifications_v5.py",
+      "services/business_analysis.py",
+      "services/operations.py",
+      "tests/test_final_ui.py"
+    ],
+    "tests/test_final_ui.py": [
+      "app.py",
+      "services/ui_adapter.py",
+      "ui/pages/workspace.py",
+      "ui/theme.py"
+    ],
+    "tests/test_financial_intelligence.py": [
+      "modules/llm_analyzer.py",
+      "services/financial_intelligence.py",
+      "services/intelligence.py",
+      "services/pipeline_config.py"
+    ],
+    "tests/test_golden_events.py": [
+      "services/event_profiles.py",
+      "tests/golden_events.py"
+    ],
+    "tests/test_home_dashboard.py": [
+      "app.py",
+      "services/ui_adapter.py",
+      "tests/test_final_ui.py",
+      "ui/components/action_status.py",
+      "ui/pages/home.py"
+    ],
+    "tests/test_pdf_preview.py": [
+      "modules/pdf_preview.py"
+    ],
+    "tests/test_phase3_pipeline.py": [
+      "modules/business_pipeline_registry.py",
+      "modules/cmf_collector_v1.py",
+      "modules/cmf_registry_v1.py",
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_remote_watcher.py",
+      "modules/llm_analyzer.py",
+      "services/business_analysis.py",
+      "services/lifecycle.py",
+      "services/pipeline_config.py"
+    ],
+    "tests/test_phase4_grounding.py": [
+      "modules/business_export.py",
+      "modules/business_pipeline_registry.py",
+      "modules/llm_analyzer.py",
+      "modules/service_registry.py",
+      "services/business_analysis.py",
+      "services/grounded_analysis.py",
+      "services/lifecycle.py",
+      "services/operations.py",
+      "services/pipeline_config.py",
+      "services/routing.py"
+    ],
+    "tests/test_phase5_administration.py": [
+      "app.py",
+      "modules/admin_registry.py",
+      "services/administration.py",
+      "services/cmf_relevance.py",
+      "services/pipeline_config.py",
+      "services/reference_import.py",
+      "services/routing.py",
+      "services/ui_adapter.py",
+      "tests/test_final_ui.py"
+    ],
+    "tests/test_phase61_semantics.py": [
+      "modules/business_pipeline_registry.py",
+      "modules/llm_analyzer.py",
+      "services/intelligence.py",
+      "services/lifecycle.py",
+      "services/pipeline_config.py",
+      "services/priority.py",
+      "services/result_presentation.py",
+      "services/ui_adapter.py",
+      "tests/test_final_ui.py",
+      "tests/test_phase6_intelligence.py",
+      "ui/components/action_status.py",
+      "ui/pages/workspace.py"
+    ],
+    "tests/test_phase6_intelligence.py": [
+      "modules/business_pipeline_registry.py",
+      "modules/llm_analyzer.py",
+      "services/business_analysis.py",
+      "services/canonical_facts.py",
+      "services/event_taxonomy.py",
+      "services/intelligence.py",
+      "services/pipeline_config.py",
+      "services/routing.py"
+    ],
+    "tests/test_product_freeze.py": [
+      "app.py",
+      "services/lifecycle.py",
+      "services/ui_adapter.py",
+      "tests/test_final_ui.py",
+      "ui/components/action_status.py",
+      "ui/navigation.py",
+      "ui/pages/activity.py",
+      "ui/pages/business_workspace.py",
+      "ui/pages/workspace.py"
+    ],
+    "tests/test_rehearsal_hardening.py": [
+      "modules/alert_identity.py",
+      "modules/business_export.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py",
+      "modules/legaltech_remote_watcher.py",
+      "services/canonical_facts.py",
+      "services/event_profiles.py",
+      "services/event_taxonomy.py",
+      "services/financial_intelligence.py",
+      "services/lifecycle.py",
+      "services/operations.py",
+      "services/pipeline_config.py",
+      "services/routing.py",
+      "services/ui_adapter.py",
+      "tests/test_financial_intelligence.py",
+      "tests/test_product_freeze.py",
+      "ui/components/presentation.py",
+      "ui/pages/secondary.py"
+    ],
+    "tests/test_scoring.py": [
+      "modules/scoring_engine.py"
+    ],
+    "tests/test_v29_offline.py": [
+      "modules/alert_identity.py",
+      "modules/alert_pdf_linker.py",
+      "modules/alert_workflow.py",
+      "modules/legaltech_detail_parser.py",
+      "modules/legaltech_notifications_network_collector.py",
+      "modules/ugfs_desktop_ui_v27_workflow.py",
+      "modules/watch_rules.py",
+      "scripts/sync_legaltech_notifications_v5.py"
+    ],
+    "tests/__init__.py": [],
+    "ui/app_ui.py": [
+      "services/ui_adapter.py",
+      "ui/components/action_status.py",
+      "ui/components/shell.py",
+      "ui/navigation.py",
+      "ui/pages/secondary.py",
+      "ui/pages/workspace.py",
+      "ui/theme.py"
+    ],
+    "ui/navigation.py": [
+      "services/ui_adapter.py"
+    ],
+    "ui/theme.py": [],
+    "ui/__init__.py": [],
+    "ui/components/action_status.py": [
+      "services/ui_adapter.py",
+      "ui/navigation.py"
+    ],
+    "ui/components/documents.py": [
+      "services/ui_adapter.py"
+    ],
+    "ui/components/icons.py": [],
+    "ui/components/presentation.py": [
+      "services/lifecycle.py",
+      "services/ui_adapter.py"
+    ],
+    "ui/components/shell.py": [
+      "services/ui_adapter.py",
+      "ui/components/icons.py",
+      "ui/components/presentation.py",
+      "ui/navigation.py"
+    ],
+    "ui/components/__init__.py": [],
+    "ui/pages/activity.py": [
+      "services/ui_adapter.py",
+      "ui/components/presentation.py"
+    ],
+    "ui/pages/administration.py": [
+      "config.py",
+      "services/lifecycle.py",
+      "services/ui_adapter.py",
+      "ui/components/presentation.py",
+      "ui/navigation.py"
+    ],
+    "ui/pages/business_workspace.py": [
+      "services/lifecycle.py",
+      "services/ui_adapter.py",
+      "ui/components/presentation.py",
+      "ui/navigation.py",
+      "ui/pages/activity.py",
+      "ui/pages/workspace.py"
+    ],
+    "ui/pages/home.py": [
+      "services/ui_adapter.py",
+      "ui/components/icons.py",
+      "ui/components/presentation.py",
+      "ui/components/shell.py",
+      "ui/navigation.py"
+    ],
+    "ui/pages/pipeline_settings.py": [
+      "services/pipeline_config.py",
+      "services/ui_adapter.py",
+      "ui/navigation.py"
+    ],
+    "ui/pages/publications.py": [
+      "services/ui_adapter.py",
+      "ui/navigation.py",
+      "ui/pages/business_workspace.py"
+    ],
+    "ui/pages/secondary.py": [
+      "services/lifecycle.py",
+      "services/ui_adapter.py",
+      "ui/components/documents.py",
+      "ui/navigation.py",
+      "ui/pages/activity.py",
+      "ui/pages/administration.py",
+      "ui/pages/business_workspace.py",
+      "ui/pages/home.py",
+      "ui/pages/workspace.py"
+    ],
+    "ui/pages/workspace.py": [
+      "services/lifecycle.py",
+      "services/result_presentation.py",
+      "services/ui_adapter.py",
+      "ui/components/documents.py",
+      "ui/components/icons.py",
+      "ui/components/presentation.py",
+      "ui/navigation.py",
+      "ui/pages/publications.py"
+    ],
+    "ui/pages/__init__.py": [],
+    "scripts/diagnostics/runtime_inventory.py": [
+      "app.py"
+    ],
+    "scripts/diagnostics/test_alert_cards_v4_5.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/diagnostics/test_complex_segmentation.py": [
+      "modules/document_segmenter.py",
+      "modules/ocr_engine.py"
+    ],
+    "scripts/diagnostics/test_current_fixes_v6.py": [
+      "modules/fact_validator.py",
+      "modules/scoring_engine.py",
+      "modules/tunisian_amount_parser.py"
+    ],
+    "scripts/diagnostics/test_detail_enrichment_v14.py": [
+      "modules/legaltech_registry.py"
+    ],
+    "scripts/diagnostics/test_financial_validation_v4.py": [
+      "modules/fact_validator.py",
+      "modules/scoring_engine.py",
+      "modules/tunisian_amount_parser.py"
+    ],
+    "scripts/diagnostics/test_generic_compatibility_v7.py": [
+      "app.py",
+      "modules/fact_validator.py",
+      "modules/sample_selector.py"
+    ],
+    "scripts/diagnostics/test_interface_excel_v8.py": [
+      "app.py",
+      "modules/excel_manager.py"
+    ],
+    "scripts/diagnostics/test_legaltech_api_v2.py": [
+      "modules/legaltech_api_client_v2.py"
+    ],
+    "scripts/diagnostics/test_legaltech_browser.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "scripts/diagnostics/test_legaltech_browser_offline.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "scripts/diagnostics/test_legaltech_collector_offline.py": [
+      "modules/legaltech_api_client_v2.py"
+    ],
+    "scripts/diagnostics/test_legaltech_detail_live.py": [
+      "modules/legaltech_api_client_v2.py"
+    ],
+    "scripts/diagnostics/test_legaltech_notifications.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/diagnostics/test_legaltech_notifications_offline.py": [
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/diagnostics/test_legaltech_notifications_v4_offline.py": [
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/diagnostics/test_legaltech_session.py": [
+      "modules/legaltech_http_client.py"
+    ],
+    "scripts/diagnostics/test_legaltech_sync_service.py": [
+      "modules/legaltech_api_client_v2.py",
+      "modules/legaltech_registry.py",
+      "modules/legaltech_sync_service.py"
+    ],
+    "scripts/diagnostics/test_network_parser_v5_3_offline.py": [
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py"
+    ],
+    "scripts/diagnostics/test_notifications_dashboard_db.py": [],
+    "scripts/diagnostics/test_notifications_v4_6.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/diagnostics/test_notification_click_and_panel_v4_4.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "scripts/diagnostics/test_ocr_only.py": [
+      "modules/ocr_engine.py"
+    ],
+    "scripts/diagnostics/test_one_pdf_pipeline.py": [
+      "modules/excel_manager.py",
+      "modules/llm_analyzer.py",
+      "modules/ocr_engine.py",
+      "modules/scoring_engine.py"
+    ],
+    "scripts/diagnostics/test_pdf_library_service.py": [
+      "modules/pdf_library_service.py"
+    ],
+    "scripts/diagnostics/test_pipeline_validation.py": [
+      "modules/document_segmenter.py",
+      "modules/ocr_engine.py",
+      "modules/pipeline_validator.py"
+    ],
+    "scripts/diagnostics/test_risk_opportunity_v5.py": [
+      "modules/fact_validator.py",
+      "modules/llm_analyzer.py",
+      "modules/scoring_engine.py"
+    ],
+    "scripts/diagnostics/test_rne_parser_samples_v1.py": [
+      "modules/legaltech_browser_collector.py"
+    ],
+    "scripts/diagnostics/test_scoring_v3.py": [
+      "modules/fact_validator.py",
+      "modules/llm_analyzer.py",
+      "modules/scoring_engine.py"
+    ],
+    "scripts/diagnostics/test_sync_v13_fixes.py": [
+      "modules/legaltech_registry.py",
+      "modules/legaltech_sync_service.py"
+    ],
+    "diagnostic_v29/current_code/app.py": [
+      "modules/ugfs_desktop_ui_v27_workflow.py"
+    ],
+    "diagnostic_v29/current_code/config.py": [],
+    "diagnostic_v29/current_code/modules/alert_workflow.py": [],
+    "diagnostic_v29/current_code/modules/legaltech_notifications_network_collector.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py"
+    ],
+    "diagnostic_v29/current_code/modules/notifications_dashboard_section_v3.py": [
+      "scripts/download_pdfs_v5_network_capture_v3.py",
+      "scripts/sync_legaltech_notifications_v5.py"
+    ],
+    "diagnostic_v29/current_code/modules/pdf_library_service.py": [],
+    "diagnostic_v29/current_code/modules/ugfs_desktop_ui_v1.py": [
+      "config.py",
+      "modules/excel_manager.py",
+      "modules/llm_analyzer.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/scoring_engine.py"
+    ],
+    "diagnostic_v29/current_code/modules/ugfs_desktop_ui_v27_workflow.py": [
+      "modules/alert_workflow.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/pdf_extractor.py",
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "diagnostic_v29/current_code/scripts/download_pdfs_v5_network_capture_v3.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py"
+    ],
+    "diagnostic_v29/current_code/scripts/sync_legaltech_notifications_v5.py": [
+      "modules/legaltech_browser_collector.py",
+      "modules/legaltech_notifications_collector.py",
+      "modules/legaltech_notifications_network_collector.py"
+    ],
+    "archive/legacy/app_backup.py": [
+      "config.py",
+      "modules/excel_manager.py",
+      "modules/feedback_manager.py",
+      "modules/llm_analyzer.py",
+      "modules/ocr_engine.py",
+      "modules/pdf_extractor.py",
+      "modules/scoring_engine.py"
+    ],
+    "archive/legacy/app_backup_before_master.py": [
+      "modules/ugfs_desktop_ui_v27_workflow.py"
+    ],
+    "archive/legacy/app_backup_before_v24.py": [
+      "modules/ugfs_desktop_ui_v23.py"
+    ],
+    "archive/legacy/app_backup_before_v25.py": [
+      "modules/ugfs_desktop_ui_v24_goal.py"
+    ],
+    "archive/legacy/app_backup_before_v26.py": [
+      "modules/ugfs_desktop_ui_v25_goal_fixed.py"
+    ],
+    "archive/legacy/app_backup_before_v27.py": [
+      "modules/ugfs_desktop_ui_v26_html_hotfix.py"
+    ],
+    "archive/legacy/app_complex_pdf_flow.py": [
+      "config.py",
+      "modules/document_segmenter.py",
+      "modules/excel_manager.py",
+      "modules/feedback_manager.py",
+      "modules/llm_analyzer.py",
+      "modules/ocr_engine.py",
+      "modules/pdf_extractor.py",
+      "modules/pipeline_validator.py",
+      "modules/scoring_engine.py"
+    ],
+    "archive/legacy/app_desktop_preview.py": [
+      "modules/ugfs_desktop_ui_v1.py"
+    ],
+    "archive/legacy/app_desktop_preview_v2.py": [
+      "modules/ugfs_desktop_ui_v2.py"
+    ],
+    "archive/legacy/app_desktop_preview_v21.py": [
+      "modules/ugfs_desktop_ui_v21.py"
+    ],
+    "archive/legacy/app_legacy_before_approved_ui_v21.py": [
+      "config.py",
+      "modules/document_segmenter.py",
+      "modules/excel_manager.py",
+      "modules/feedback_manager.py",
+      "modules/legaltech_sync_service.py",
+      "modules/llm_analyzer.py",
+      "modules/notifications_dashboard_section_v3.py",
+      "modules/ocr_engine.py",
+      "modules/pdf_extractor.py",
+      "modules/pdf_library_service.py",
+      "modules/pipeline_validator.py",
+      "modules/sample_selector.py",
+      "modules/scoring_engine.py"
+    ],
+    "archive/legacy/app_v4.py": [
+      "config.py",
+      "modules/document_segmenter.py",
+      "modules/excel_manager.py",
+      "modules/feedback_manager.py",
+      "modules/llm_analyzer.py",
+      "modules/ocr_engine.py",
+      "modules/pdf_extractor.py",
+      "modules/pipeline_validator.py",
+      "modules/scoring_engine.py"
+    ],
+    "archive/legacy/app_v5.py": [
+      "config.py",
+      "modules/document_segmenter.py",
+      "modules/excel_manager.py",
+      "modules/feedback_manager.py",
+      "modules/llm_analyzer.py",
+      "modules/ocr_engine.py",
+      "modules/pdf_extractor.py",
+      "modules/pipeline_validator.py",
+      "modules/scoring_engine.py"
+    ],
+    "archive/legacy/app_v6.py": [
+      "config.py",
+      "modules/document_segmenter.py",
+      "modules/excel_manager.py",
+      "modules/feedback_manager.py",
+      "modules/llm_analyzer.py",
+      "modules/ocr_engine.py",
+      "modules/pdf_extractor.py",
+      "modules/pipeline_validator.py",
+      "modules/scoring_engine.py"
+    ],
+    "archive/legacy/install_v33_0_ui_shell.py": [
+      "app.py"
+    ],
+    "archive/legacy/install_v33_1_notifications_master.py": [],
+    "archive/legacy/install_v33_2_ui_master_deep_pass.py": [
+      "app.py",
+      "modules/ugfs_ui_master_v33_2.py"
+    ],
+    "archive/legacy/install_v33_3_pixel_pass.py": [
+      "app.py"
+    ],
+    "archive/legacy/install_v33_4_exact_match.py": [
+      "app.py"
+    ],
+    "archive/legacy/install_v33_5_final_ui_freeze.py": [
+      "app.py"
+    ],
+    "archive/legacy/install_v33_6_ui_ux_corrected.py": [
+      "app.py"
+    ],
+    "archive/legacy/install_v33_7_lux_filters.py": [
+      "app.py"
+    ],
+    "archive/legacy/install_v33_8_stable_luxe.py": [
+      "app.py"
+    ],
+    "archive/legacy/notification_viewer.py": [],
+    "archive/legacy/notification_viewer_v4.py": [],
+    "archive/legacy/notification_viewer_v5.py": [],
+    "archive/legacy/test_cmf_v1.py": [
+      "modules/cmf_collector_v1.py",
+      "modules/cmf_registry_v1.py"
+    ]
+  },
+  "dynamic_calls": [
+    {
+      "file": "modules/ugfs_ui_master_v33_2.py",
+      "line": 135,
+      "call": "import_module"
+    },
+    {
+      "file": "modules/ugfs_ui_master_v33_2.py",
+      "line": 59,
+      "call": "__import__"
+    },
+    {
+      "file": "modules/ugfs_ui_master_v33_2.py",
+      "line": 534,
+      "call": "import_module"
+    },
+    {
+      "file": "scripts/verify_cmf_integration_v1.py",
+      "line": 24,
+      "call": "import_module"
+    },
+    {
+      "file": "scripts/verify_cmf_integration_v1.py",
+      "line": 25,
+      "call": "import_module"
+    },
+    {
+      "file": "scripts/verify_v29_install.py",
+      "line": 29,
+      "call": "import_module"
+    },
+    {
+      "file": "services/normalization.py",
+      "line": 317,
+      "call": "__import__"
+    },
+    {
+      "file": "tests/test_composite_workflow.py",
+      "line": 60,
+      "call": "__import__"
+    }
+  ]
+}

@@ -1,12 +1,11 @@
-import streamlit as st
+﻿import streamlit as st
 
-from modules.ugfs_desktop_ui_v21 import render_ugfs_desktop_app_v21
-
-
+from ui.app_ui import render
 st.set_page_config(
-    page_title="Système de Veille LegalTech",
+    page_title="Système de Veille UGFS",
+    page_icon="📘",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-render_ugfs_desktop_app_v21()
+render()

@@ -1,31 +1,13 @@
-# Quick Start — 15 Minutes
+# Démarrage rapide
 
-## Install
+La procédure maintenue est dans [README.md](README.md).
 
-```bash
-python -m venv .venv
-pip install -r requirements.txt
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
+.\.venv\Scripts\python.exe scripts/check_environment.py
+.\.venv\Scripts\python.exe -m streamlit run app.py --server.address 127.0.0.1
 ```
 
-## Local model
-
-```bash
-ollama pull qwen3:8b
-ollama run qwen3:8b
-```
-
-## Run
-
-```bash
-streamlit run app.py
-```
-
-## First test
-
-1. Put one legal announcement PDF in `data/pdf_raw/`.
-2. Open the Streamlit URL.
-3. Click `Analyser les PDFs`.
-4. Click `Exporter vers Excel`.
-5. Open the Excel output and simulate corrections.
-6. Import the corrected Excel.
-7. Check `data/feedback/feedback_memory.json`.
+Installer/configurer Ollama, OCR et Chromium selon le README avant leurs usages respectifs. Un clone neuf s'ouvre sans données. Ne pas exécuter les anciens installeurs UI archivés.

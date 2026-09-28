@@ -8,6 +8,7 @@ are applied afterwards by separate modules.
 from __future__ import annotations
 
 import json
+import os
 import re
 from typing import Any
 
@@ -17,7 +18,7 @@ from config import OLLAMA_MODEL, OLLAMA_URL
 
 
 MAX_INPUT_CHARS = 12_000
-REQUEST_TIMEOUT_SECONDS = 240
+REQUEST_TIMEOUT_SECONDS = max(30, int(os.getenv("OLLAMA_TIMEOUT_SECONDS", "600")))
 ANALYZER_VERSION = "legaltech_analyzer_v5"
 
 EVENT_CODES = [
@@ -391,6 +392,30 @@ def _normalize_analysis(
     }
 
 
+def request_structured(user_prompt: str, *, system_prompt: str, schema: dict[str, Any]) -> dict[str, Any]:
+    """One shared Ollama transport for legal and specialized business analysis.
+
+    Errors are raised here; callers decide how to display or persist failure.
+    No fabricated fallback result is returned by this API.
+    """
+    from urllib.parse import urlparse
+    if urlparse(OLLAMA_URL).hostname not in {"localhost", "127.0.0.1", "::1"}:
+        raise ValueError("L’URL Ollama configurée n’est pas locale. Configurez le moteur local avant l’analyse.")
+    payload = {"model": OLLAMA_MODEL,
+        "messages": [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+        "stream": False, "think": False, "format": schema,
+          "options": {"temperature": 0.0, "seed": 42, "num_predict": 1800}}
+    response = requests.post(OLLAMA_URL, json=payload, timeout=(10, REQUEST_TIMEOUT_SECONDS))
+    response.raise_for_status()
+    body = response.json()
+    if body.get("error"):
+        raise ValueError(str(body["error"]))
+    message = body.get("message")
+    if not isinstance(message, dict) or not str(message.get("content") or "").strip():
+        raise ValueError("Ollama n’a retourné aucun contenu d’analyse.")
+    return _extract_json_object(message["content"])
+
+
 def analyze_legal_text(text: str, ocr_quality: float = 0.7) -> dict[str, Any]:
     """Analyze one legal announcement with the locally running Ollama model."""
     source_text = (text or "").strip()
@@ -408,39 +433,8 @@ def analyze_legal_text(text: str, ocr_quality: float = 0.7) -> dict[str, Any]:
         f"TEXTE SOURCE:\n{truncated_text}"
     )
 
-    payload = {
-        "model": OLLAMA_MODEL,
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_prompt},
-        ],
-        "stream": False,
-        "think": False,
-        "format": ANALYSIS_SCHEMA,
-        "options": {
-            "temperature": 0.0,
-            "seed": 42,
-        },
-    }
-
     try:
-        response = requests.post(
-            OLLAMA_URL,
-            json=payload,
-            timeout=REQUEST_TIMEOUT_SECONDS,
-        )
-        response.raise_for_status()
-        body = response.json()
-
-        message = body.get("message")
-        if not isinstance(message, dict):
-            raise ValueError("Ollama response is missing the 'message' object.")
-
-        content = message.get("content", "")
-        if not isinstance(content, str) or not content.strip():
-            raise ValueError("Ollama returned an empty message.")
-
-        raw_analysis = _extract_json_object(content)
+        raw_analysis = request_structured(user_prompt, system_prompt=SYSTEM_PROMPT, schema=ANALYSIS_SCHEMA)
         return _normalize_analysis(
             raw_analysis,
             ocr_quality,
@@ -462,3 +456,17 @@ def analyze_legal_text(text: str, ocr_quality: float = 0.7) -> dict[str, Any]:
             f"Invalid Ollama response: {exc}",
             ocr_quality,
         )
+
+
+def model_identity():
+    """Resolve the actual local model digest; no persistent cache if unavailable."""
+    from urllib.parse import urlsplit
+    endpoint = urlsplit(OLLAMA_URL)
+    if endpoint.hostname not in {"localhost", "127.0.0.1", "::1"}:
+        raise ValueError("Le moteur Ollama doit être local.")
+    try:
+        response = requests.get(f"{endpoint.scheme}://{endpoint.netloc}/api/tags", timeout=(2, 3))
+        response.raise_for_status()
+        return next((model["digest"] for model in response.json().get("models", []) if model.get("name") == OLLAMA_MODEL and model.get("digest")), None)
+    except (requests.RequestException, ValueError, KeyError):
+        return None

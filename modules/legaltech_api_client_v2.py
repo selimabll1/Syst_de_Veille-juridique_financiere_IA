@@ -25,7 +25,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 
-LEGALTECH_API_CLIENT_VERSION = "legaltech_api_client_v2"
+LEGALTECH_API_CLIENT_VERSION = "legaltech_api_client_v5"
 
 
 class LegalTechAPIError(RuntimeError):
@@ -52,6 +52,9 @@ class LegalTechArticle:
     source: str
     file: str
     page: int | None
+    categories: tuple[str, ...]
+    source_groups: tuple[str, ...]
+    extras: dict[str, Any]
     raw_hit: dict[str, Any]
 
     @property
@@ -94,6 +97,40 @@ def _safe_https_url(value: str, allowed_hosts: Iterable[str]) -> str:
     return value
 
 
+def _normalize_categories(value: Any) -> tuple[str, ...]:
+    if value is None:
+        return ()
+    if isinstance(value, str):
+        cleaned = value.strip()
+        return (cleaned,) if cleaned else ()
+    if isinstance(value, dict):
+        candidates = []
+        for key in ("name", "label", "title", "value", "category", "libelle", "cat"):
+            candidate = value.get(key)
+            if candidate not in (None, ""):
+                candidates.append(str(candidate).strip())
+        return tuple(item for item in candidates if item)
+    if isinstance(value, (list, tuple, set)):
+        result: list[str] = []
+        for item in value:
+            result.extend(_normalize_categories(item))
+        return tuple(dict.fromkeys(item for item in result if item))
+    cleaned = str(value).strip()
+    return (cleaned,) if cleaned else ()
+
+
+
+def _raw_article_text(value: Any) -> str:
+    """Preserve LegalTech articleText without producing unstable Python repr."""
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, (list, tuple, dict)):
+        return json.dumps(value, ensure_ascii=False, sort_keys=isinstance(value, dict))
+    return str(value)
+
+
 def _article_from_hit(hit: dict[str, Any]) -> LegalTechArticle:
     source = hit.get("_source", hit)
     if not isinstance(source, dict):
@@ -111,11 +148,14 @@ def _article_from_hit(hit: dict[str, Any]) -> LegalTechArticle:
         reference=str(source.get("reference") or "").strip(),
         title=str(source.get("title") or "").strip(),
         language=str(source.get("lang") or "").strip(),
-        article_text=str(source.get("articleText") or ""),
+        article_text=_raw_article_text(source.get("articleText")),
         published_at=str(source.get("publishedAt") or "").strip(),
         source=str(source.get("source") or "").strip(),
         file=str(source.get("file") or "").strip(),
         page=page,
+        categories=_normalize_categories(source.get("categories")),
+        source_groups=_normalize_categories(source.get("source_grps")),
+        extras=(dict(source.get("extras")) if isinstance(source.get("extras"), dict) else {}),
         raw_hit=hit,
     )
 
@@ -199,16 +239,21 @@ class LegalTechAPIClient:
             str(endpoints.get("article_search", "")),
             self.allowed_hosts,
         )
+        self.article_detail_url = _safe_https_url(
+            str(
+                endpoints.get("article_detail")
+                or f"{self.api_base_url}/api/secure/article"
+            ),
+            self.allowed_hosts,
+        )
         self.pdf_url = _safe_https_url(
             str(endpoints.get("pdf_generation", "")),
             self.allowed_hosts,
         )
 
+        # The PDF JWT is optional for article search/synchronization.
+        # It is checked only when PDF generation is explicitly requested.
         self.pdf_token = str(secrets.get("pdf_token", "")).strip()
-        if not self.pdf_token:
-            raise LegalTechTokenError(
-                "Le token PDF est absent de secrets/legaltech_session.local.json."
-            )
 
         self.timeout = max(10, int(config.get("timeout_seconds", 60)))
         self.delay = max(0.0, float(config.get("min_delay_seconds", 1.5)))
@@ -246,7 +291,9 @@ class LegalTechAPIClient:
         config_path: str | Path,
         session_path: str | Path,
     ) -> "LegalTechAPIClient":
-        return cls(load_json(config_path), load_json(session_path))
+        secrets_path = Path(session_path)
+        secrets = load_json(secrets_path) if secrets_path.exists() else {}
+        return cls(load_json(config_path), secrets)
 
     def _wait(self) -> None:
         elapsed = time.monotonic() - self.last_request_at
@@ -254,24 +301,27 @@ class LegalTechAPIClient:
         if remaining > 0:
             time.sleep(remaining)
 
-    def _post_json(self, url: str, body: dict[str, Any]) -> dict[str, Any]:
-        self._wait()
-        response = self.session.post(
-            url,
-            json=body,
-            timeout=self.timeout,
-            allow_redirects=True,
-        )
-        self.last_request_at = time.monotonic()
+    @staticmethod
+    def _decode_json_response(
+        response: requests.Response,
+        url: str,
+    ) -> dict[str, Any]:
+        response_preview = response.text[:500].replace("\n", " ")
+        response_lower = response_preview.casefold()
 
-        if response.status_code in {401, 403, 419}:
+        if (
+            response.status_code in {401, 403, 419}
+            or "expired jwt" in response_lower
+            or "token expir" in response_lower
+        ):
             raise LegalTechTokenError(
-                f"Accès refusé ou token expiré (HTTP {response.status_code})."
+                "Accès LegalTech refusé ou authentification expirée "
+                f"(HTTP {response.status_code})."
             )
+
         if response.status_code != 200:
-            preview = response.text[:300].replace("\n", " ")
             raise LegalTechAPIError(
-                f"HTTP {response.status_code} pour {url}: {preview!r}"
+                f"HTTP {response.status_code} pour {url}: {response_preview!r}"
             )
 
         try:
@@ -284,6 +334,33 @@ class LegalTechAPIClient:
         if not isinstance(payload, dict):
             raise LegalTechAPIError("La réponse JSON doit être un objet.")
         return payload
+
+    def _post_json(self, url: str, body: dict[str, Any]) -> dict[str, Any]:
+        self._wait()
+        response = self.session.post(
+            url,
+            json=body,
+            timeout=self.timeout,
+            allow_redirects=True,
+        )
+        self.last_request_at = time.monotonic()
+        return self._decode_json_response(response, url)
+
+    def _get_json(
+        self,
+        url: str,
+        *,
+        params: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        self._wait()
+        response = self.session.get(
+            url,
+            params=params or {},
+            timeout=self.timeout,
+            allow_redirects=True,
+        )
+        self.last_request_at = time.monotonic()
+        return self._decode_json_response(response, url)
 
     def fetch_articles(
         self,
@@ -314,7 +391,67 @@ class LegalTechAPIClient:
 
         return normalize_articles(payload, self.mode), payload
 
+    def fetch_article_detail(
+        self,
+        article: LegalTechArticle,
+    ) -> tuple[LegalTechArticle, dict[str, Any]]:
+        """Fetch the richer source-specific detail for one LegalTech result.
+
+        The observed LegalTech detail request uses:
+        ``GET /api/secure/article?id=<article_id>&source=<source>&doc_id=<doc_id>``.
+
+        No browser cookie is copied by this client. If LegalTech later requires
+        an authenticated official mechanism, use the supported credential flow
+        provided by LegalTech rather than importing browser cookies.
+        """
+        article_id = str(article.source_id or "").strip()
+        source = str(article.source or "").strip()
+        doc_id = str(article.doc_id or "").strip()
+
+        missing = [
+            name
+            for name, value in (
+                ("article_id", article_id),
+                ("source", source),
+                ("doc_id", doc_id),
+            )
+            if not value
+        ]
+        if missing:
+            raise LegalTechAPIError(
+                "Détail LegalTech impossible : champ(s) manquant(s) : "
+                + ", ".join(missing)
+            )
+
+        payload = self._get_json(
+            self.article_detail_url,
+            params={
+                "id": article_id,
+                "source": source,
+                "doc_id": doc_id,
+            },
+        )
+
+        hits = payload.get("hits", {})
+        raw_hits = hits.get("hits", []) if isinstance(hits, dict) else []
+        if not isinstance(raw_hits, list) or not raw_hits:
+            raise LegalTechAPIError(
+                "Aucun détail d'article n'a été retourné par LegalTech."
+            )
+
+        first = raw_hits[0]
+        if not isinstance(first, dict):
+            raise LegalTechAPIError("Détail LegalTech invalide.")
+
+        return _article_from_hit(first), payload
+
     def create_pdf_bytes(self, article: LegalTechArticle) -> bytes:
+        if not self.pdf_token:
+            raise LegalTechTokenError(
+                "Aucun token PDF n'est configuré. "
+                "La synchronisation des annonces reste disponible."
+            )
+
         article_payload = {
             "source": article.source,
             "title": article.title,
